@@ -228,13 +228,16 @@ class ManualControlPanel(wx.Panel):
     def InitUI(self):
         self.red_button = wx.Button(self, label=u'Красный')
         self.green_button = wx.Button(self, label=u'Зелёный')
+        self.off_button = wx.Button(self, label=u'Отключить')
 
         self.red_button.Bind(wx.EVT_BUTTON, self.OnRedButton)
         self.green_button.Bind(wx.EVT_BUTTON, self.OnGreenButton)
+        self.off_button.Bind(wx.EVT_BUTTON, self.OnOffButton)
 
         box = wx.BoxSizer(wx.HORIZONTAL)
         box.Add(self.red_button, 1, wx.EXPAND | wx.BOTTOM, 10)
         box.Add(self.green_button, 1, wx.EXPAND | wx.BOTTOM, 10)
+        box.Add(self.off_button, 1, wx.EXPAND | wx.BOTTOM, 10)
         self.SetSizer(box)
 
     def OnRedButton(self, event):
@@ -243,11 +246,14 @@ class ManualControlPanel(wx.Panel):
     def OnGreenButton(self, event):
         self.device.go_green()
 
+    def OnOffButton(self, event):
+        self.device.go_off()
+
     def ActivateMode(self):
         pass
 
     def DeactivateMode(self):
-        pass
+        self.device.go_off()
 
 
 #==============================================================================

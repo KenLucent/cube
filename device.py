@@ -55,6 +55,10 @@ class CubeDevice(object):
         self._write_pins(self.green_pins, 0)
         self._write_pins(self.red_pins, 1)
 
+    def go_off(self):
+        self._write_pins(self.green_pins, 0)
+        self._write_pins(self.red_pins, 0)
+
     def blink(self):
         for i in xrange(5):
             self.go_red()
